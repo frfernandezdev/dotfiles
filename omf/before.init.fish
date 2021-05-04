@@ -1,4 +1,5 @@
 set -U fish_user_paths $fish_user_paths $HOME/.local/bin/
+set -U fish_user_paths $fish_user_paths $HOME/.npm-global/bin
 set fish_greeting
 set EDITOR "nvim"
 
