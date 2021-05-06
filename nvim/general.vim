@@ -3,6 +3,7 @@
 
 set nocompatible
 set encoding=UTF-8
+set autoread
 
 if has('filetype')
   filetype indent plugin on
@@ -78,13 +79,22 @@ set t_vb=
 set cmdheight=2
 
 " Display line numbers on the left
-set number
+set number relativenumber
+
+augroup numbertoggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+	autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
+
+set foldmethod=indent
+set foldlevelstart=1
 
 "------------------------------------------------------------
 " Indentation options {{{1
