@@ -105,3 +105,15 @@ set shiftwidth=2
 set tabstop=2
 
 
+" let g:clipboard = {
+"   \ 'name': 'pbcopy',
+"   \ 'copy': {
+"   \    '+': 'pbcopy',
+"   \    '*': 'pbcopy',
+"   \  },
+"   \ 'paste': {
+"   \    '+': 'pbpaste',
+"   \    '*': 'pbpaste',
+"   \ },
+"   \ 'cache_enabled': 0,
+"   \ }

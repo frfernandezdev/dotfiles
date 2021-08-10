@@ -1,4 +1,4 @@
 {
-	"tsserver.log": "verbose"
+	"tsserver.log": "verbose",
+	"eslint.packageManager": ["npm", "yarn"]
 }
-/home/frfernandez/.config/nvim/coc-settings.json

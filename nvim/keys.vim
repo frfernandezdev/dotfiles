@@ -3,7 +3,7 @@
 
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
-nnoremap <C-L> :nohl<CR><C-L>
+nnoremap <c-l> :nohl<CR><c-l>
 
 nnoremap <A-d> :t .<CR>==
 inoremap <A-d> <Esc>:t .<CR>==gi
@@ -25,19 +25,19 @@ vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
 " Move between tabs
-nnoremap <A-Left> :tabprevious<CR>
-nnoremap <A-Right> :tabnext<CR>
+nnoremap th :tabprevious<CR>
+nnoremap tl :tabnext<CR>
 
 " Save 
-nnoremap <C-S> :w <CR>==
-inoremap <C-S> <ESC> :w <CR>==gi
-vnoremap <C-S> :w <CR>gv=gv
+nnoremap <C-s> :w <CR>
+inoremap <C-s> <ESC> :w <CR>
+vnoremap <C-s> :w <CR>
 
 " -------------
 
 " NerdTree Mapping
 nnoremap <leader>b :NERDTreeFocus<CR>
-nnoremap <C-b> :NERDTreeToggle<CR>
+nnoremap <C-b> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
 " ----------------
 
 " FzF Mapping
@@ -55,11 +55,16 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>showdocumentation()<CR>
 
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 " ----------------
+
+let g:AutoPairsShortcutToggle='' 
