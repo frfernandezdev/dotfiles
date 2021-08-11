@@ -37,7 +37,7 @@ vnoremap <C-s> :w <CR>
 
 " NerdTree Mapping
 nnoremap <leader>b :NERDTreeFocus<CR>
-nnoremap <C-b> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
+nnoremap <C-b> :NERDTreeToggle<CR>
 " ----------------
 
 " FzF Mapping

@@ -1,4 +1,7 @@
 {
 	"tsserver.log": "verbose",
-	"eslint.packageManager": ["npm", "yarn"]
+	"eslint.packageManager": ["npm", "yarn"],
+	"jedi.enable": true,
+	"jedi.startupMessage": false,
+	"jedi.executable.command": "jedi-language-server"
 }
