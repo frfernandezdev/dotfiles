@@ -58,6 +58,15 @@ formatter.setup(
             stdin = true
           }
         end
+      },
+      java = {
+        function()
+          return {
+            exe = "java",
+            args = {"-jar", "~/google-java-format.jar", "-"},
+            stdin = true
+          }
+        end
       }
     }
   }
@@ -67,7 +76,7 @@ vim.api.nvim_exec(
   [[
   augroup FormatAutogroup
     autocmd!
-    autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.lua,*.py FormatWrite
+    autocmd BufWritePost *.js,*.jsx,*.ts,*.tsx,*.lua,*.py,.java FormatWrite
   augroup END
 ]],
   true
