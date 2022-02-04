@@ -63,7 +63,14 @@ formatter.setup(
         function()
           return {
             exe = "java",
-            args = {"-jar", "~/google-java-format.jar", "-"},
+            args = {
+              "--add-exports jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED",
+              "--add-exports jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED",
+              "--add-exports jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED",
+              "--add-exports jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED",
+              "--add-exports jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED",
+              "-jar", "~/google-java-format.jar", "-"
+            },
             stdin = true
           }
         end
