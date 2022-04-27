@@ -33,3 +33,4 @@ nnoremap("tl", ":tabnext<CR>")
 nnoremap("<C-s>", ":w<CR>")
 inoremap("<C-s>", "<Esc>:w <CR>")
 vnoremap("<C-s>", ":w<CR>")
+

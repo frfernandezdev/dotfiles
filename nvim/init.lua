@@ -46,11 +46,11 @@ opt.directory = {
 opt.history = 10000 -- store the last 1000 commands entered
 opt.textwidth = 120 -- after configured number of characters, wrap line
 
-opt.inccommand = "nosplit" -- show the results of substition as they're happening
+--opt.inccommand = "nosplit" -- show the results of substition as they're happening
 -- but don't open a split
 
 opt.backspace = {"indent", "eol,start"} -- make backspace behave in a sane manner
-opt.clipboard = {"unnamed", "unnamedplus"} -- use the system clipboard
+opt.clipboard = { "unnamedplus" }
 
 -- searching
 opt.ignorecase = true -- case insensitive searching
@@ -105,9 +105,6 @@ opt.softtabstop = 2 -- edit as if the tabs are 4 characters wide
 opt.shiftwidth = 2 -- number of spaces to use for indent and unindent
 opt.shiftround = true -- round indent to a multiple of 'shiftwidth'
 
--- Code folding settings
-cmd [[set foldmethod=expr]] -- use treesitter folding support
-cmd [[set foldexpr=nvim_treesitter#foldexpr()]]
 --opt.foldlevelstart = 99
 --opt.foldnestmax = 10 -- deepest fold is 10 levels
 opt.foldenable = false -- don't fold by default
@@ -122,6 +119,7 @@ opt.listchars = {
   extends = "❯",
   precedes = "❮"
 }
+opt.termguicolors = true
 
 cmd [[
   augroup numbertoggle

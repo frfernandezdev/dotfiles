@@ -7,6 +7,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
 end
 
+
+
 return require("packer").startup(
   function(use)
     -- Packer can manage itself
@@ -19,18 +21,17 @@ return require("packer").startup(
     }
 
     -- Lualine
+    use "kyazdani42/nvim-web-devicons"
     use {
       "nvim-lualine/lualine.nvim",
-      requires = {"kyazdani42/nvim-web-devicons", opt = true},
+      requires = {"kyazdani42/nvim-web-devicons"},
       config = [[require("plugins.lualine")]]
     }
 
     -- Tree
     use {
       "kyazdani42/nvim-tree.lua",
-      requires = {
-        "kyazdani42/nvim-web-devicons" -- optional, for file icon
-      },
+      requires = {"kyazdani42/nvim-web-devicons"},
       config = [[require("plugins.tree")]]
     }
 
@@ -45,17 +46,26 @@ return require("packer").startup(
     }
 
     -- Cmp
-    use {"hrsh7th/cmp-nvim-lsp"}
-    use {"L3MON4D3/LuaSnip"}
     use {
       "hrsh7th/nvim-cmp",
       after = "nvim-lspconfig",
       config = [[require("plugins.cmp")]]
     }
-    use {"hrsh7th/cmp-buffer", after = "nvim-cmp"}
-    use {"hrsh7th/cmp-path", after = "nvim-cmp"}
-    use {"hrsh7th/cmp-cmdline", after = "nvim-cmp"}
-    use {"saadparwaiz1/cmp_luasnip", after = "nvim-cmp"}
+
+    use {
+      "L3MON4D3/LuaSnip",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-cmdline",
+      "saadparwaiz1/cmp_luasnip",
+      {
+        "windwp/nvim-autopairs",
+        config = [[require("plugins.autopairs")]]
+      },
+      requires = {"hrsh7th/nvim-cmp"}
+    }
+
     -- Telescope
     use {
       "nvim-telescope/telescope.nvim",
@@ -63,43 +73,36 @@ return require("packer").startup(
       requires = {{"nvim-lua/plenary.nvim"}}
     }
 
+    -- Treesitter
     use {
       "nvim-treesitter/nvim-treesitter",
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      run = ":TSUpdate",
       config = [[require("plugins.treesitter")]]
     }
 
     use {
-      "windwp/nvim-autopairs",
-      config = [[require("plugins.autopairs")]]
+      "nvim-treesitter/playground",
+      "p00f/nvim-ts-rainbow",
+      "windwp/nvim-ts-autotag",
+      requires = {
+        "nvim-treesitter/nvim-treesitter"
+      }
     }
-
-    use "windwp/nvim-ts-autotag"
 
     use {
       "mhartington/formatter.nvim",
-      config = [[require("plugins.formatter")]]
+      config = [[require("plugins.formatter")]],
     }
 
+    use "nvim-lua/plenary.nvim"
     use {
       "lewis6991/gitsigns.nvim",
+      config = [[require("plugins.gitsigns")]],
       requires = {
         "nvim-lua/plenary.nvim"
       },
-      config = function()
-        require("gitsigns").setup()
-      end
     }
-
-    use {
-      "kosayoda/nvim-lightbulb",
-      config = function()
-        vim.cmd [[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]]
-      end
-    }
-
     use "tpope/vim-fugitive"
+
 
     if packer_bootstrap then
       require("packer").sync()
